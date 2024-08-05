@@ -4,7 +4,7 @@ import type { Ref } from 'vue'
 
 type WeatherData = {
   location : {
-    localTime : Date;
+    localtime : Date;
     name : string;
     region : string;
   };
@@ -21,7 +21,6 @@ type WeatherData = {
     wind_mph: number;
   };
 };
-
 type Coords = {
   latitude : number;
   longitude : number;
@@ -29,8 +28,9 @@ type Coords = {
 interface Props {
   coords : Coords;
 }
-const props = defineProps<Props>();
 
+
+const props = defineProps<Props>();
 const data: Ref<WeatherData | undefined> = ref();
 
 const fetchWeather = async (coords: Coords): Promise<WeatherData> => {
@@ -45,6 +45,18 @@ const fetchWeather = async (coords: Coords): Promise<WeatherData> => {
   return data;
 }
 
+const formatData = (dateString: Date): string => {
+
+  const date   = new Date(dateString);
+
+  const result = new Intl.DateTimeFormat('default', {
+    dateStyle : 'long',
+    timeStyle : 'short'
+  }).format(date);
+
+  return result
+}
+
 
 onMounted( async () => {
     const { latitude, longitude } = props.coords;
@@ -52,9 +64,6 @@ onMounted( async () => {
     data.value = weatherResponse;
   }
 );
-
-
-
 </script>
 
 <template>
@@ -73,6 +82,7 @@ onMounted( async () => {
         </h1>
         <p>{{ data.location.name }} {{ data.location.region }}</p>
         <p>Precipitation: {{ data.current.precip_mm }}mm</p>
+        <p>{{ formatData(data.location.localtime) }}</p>
       </div>
     </article>
     <div v-else>Loading ...</div>
