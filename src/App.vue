@@ -1,15 +1,9 @@
 <script setup lang="ts">
-
+import Geolocation from './components/Geolocation.vue';
 </script>
 
 <template>
-  <header>
-
-  </header>
-
-  <main>
-
-  </main>
+  <Geolocation />
 </template>
 
 <style scoped>
