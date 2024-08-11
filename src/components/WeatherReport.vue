@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import type { Ref } from 'vue'
+import WindDirection from './WindDirection.vue';
 
 type WeatherData = {
   location : {
@@ -17,7 +18,7 @@ type WeatherData = {
       icon: string;
     };
     wind_degree: number;
-    wind_kpf: number;
+    wind_kph: number;
     wind_mph: number;
   };
 };
@@ -83,6 +84,10 @@ onMounted( async () => {
         <p>{{ data.location.name }} {{ data.location.region }}</p>
         <p>Precipitation: {{ data.current.precip_mm }}mm</p>
         <p>{{ formatData(data.location.localtime) }}</p>
+        <p>
+          Wind: {{ data.current.wind_kph }} kph
+          <wind-direction :degrees="data.current.wind_degree" />
+        </p>
       </div>
     </article>
     <div v-else>Loading ...</div>
