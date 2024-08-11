@@ -23,7 +23,7 @@ describe('WindDirection', () => {
 		expect(windDirectionArrowInnerHTML).toContain('⬇');
 	});
 
-	it('Renders the correct wind direction for screen renders', () => {
+	it('Renders the correct wind direction for screen readers', () => {
 		const wrapper = shallowMount(WindDirection, {
 			props : { degrees : 270 }
 		});
