@@ -9,11 +9,12 @@ describe('WindDirection', () => {
 
 		expect(wrapper).toBeTruthy();
 	});
+
 	it('Renders the indicator with the correct wind direction', () => {
 		const wrapper = shallowMount(WindDirection, {
 			props : { degrees : 90 }
 		});
-		const windDirectionArrow = wrapper.find('[data-testid="windDirectionArrow"');
+		const windDirectionArrow = wrapper.find('[data-testid="wind-direction-arrow"');
 		const windDirectionArrowAttributeStyle = windDirectionArrow.attributes('style');
 		const windDirectionArrowInnerHTML = windDirectionArrow.html();
 
