@@ -4,7 +4,7 @@ import App from './App.vue';
 
 describe('App', (): void => {
 	it('Renders GetLocation component', () => {
-		const wrapper = shallowMount<App>(App);
+		const wrapper = shallowMount<typeof App>(App);
 		const isExistGetLocationComponent = wrapper.findComponent(GetLocation).exists();
 		expect(isExistGetLocationComponent).toBe(true);
 	});
