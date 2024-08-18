@@ -44,6 +44,7 @@ describe('Geolocation', () => {
 		const wrapper = await shallowMount(Geolocation);
 
 		expect(wrapper).toBeTruthy();
+		expect(wrapper.vm.geolocationByUser).toEqual(true);
 		expect(wrapper.html()).toContain('User denied access');
 	});
 });
